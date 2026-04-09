@@ -10,7 +10,8 @@ on:
       - LICENSE
 
 permissions:
-  contents: write  # Diperlukan untuk melakukan commit dan push
+  contents: write
+  pull-requests: write  # Diperlukan untuk melakukan commit dan push
 
 jobs:
   setup-claude:
