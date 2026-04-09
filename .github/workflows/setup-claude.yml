@@ -1,27 +1,150 @@
-name: Setup Claude Configuration
+name: Initialize Claude Code Configuration
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # Dijalankan secara manual dari GitHub UI
+  push:
+    branches:
+      - main
+    paths:
+      - README.md
+      - LICENSE
+
+permissions:
+  contents: write  # Diperlukan untuk melakukan commit dan push
 
 jobs:
-  setup:
+  setup-claude:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Repository
+      - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20'
+          cache: 'npm'
 
-      - name: Initialize Bedrock
-        run: npx @isonnymichael/bedrock init --tool claude
-        
-      - name: Commit Changes
+      - name: 🚀 Initialize Bedrock
+        run: npx @isonnymichael/bedrock init --tool claude || echo "Bedrock already initialized"
+
+      - name: 📁 Create Claude Directory Structure
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          mkdir -p .claude/rules
+          mkdir -p .claude/commands
+          mkdir -p .claude/skills
+
+      - name: 📝 Create CLAUDE.md
+        run: |
+          cat <<'EOF' > .claude/CLAUDE.md
+          # CLAUDE.md
+
+          ## Project Overview
+          Telnet-X-Supreme-The-Grand-Arch is a modular framework for telnet-based automation and AI-assisted orchestration.
+
+          ## Tech Stack
+          - Node.js 20+
+          - JavaScript (ES2022)
+          - npm
+          - Anthropic Claude / AWS Bedrock
+
+          ## Critical Rules
+          - **IMPORTANT:** Never commit secrets.
+          - **IMPORTANT:** Always validate external input.
+          - **IMPORTANT:** Include tests for all new features.
+          EOF
+
+      - name: 📝 Create Formatting Rules
+        run: |
+          cat <<'EOF' > .claude/rules/format.md
+          # Code Formatting Rules
+          - Use 2 spaces for indentation.
+          - camelCase for variables and functions.
+          - PascalCase for classes.
+          - UPPER_SNAKE_CASE for constants.
+          - Maximum line length: 100 characters.
+          EOF
+
+      - name: 📝 Create Testing Rules
+        run: |
+          cat <<'EOF' > .claude/rules/testing.md
+          # Testing Guidelines
+          - Framework: Vitest
+          - Test files: *.test.js
+          - Minimum coverage: 80%
+          EOF
+
+      - name: 📝 Create Security Rules
+        run: |
+          cat <<'EOF' > .claude/rules/security.md
+          # Security Guardrails
+          - Never hardcode secrets.
+          - Validate all inputs.
+          - Use parameterized queries.
+          - Run npm audit regularly.
+          EOF
+
+      - name: 📝 Create /review Command
+        run: |
+          cat <<'EOF' > .claude/commands/review.md
+          # /review Command
+          Analyze staged changes for bugs, security issues, and style violations.
+          Provide a structured summary with severity levels.
+          EOF
+
+      - name: 📝 Create /docs Command
+        run: |
+          cat <<'EOF' > .claude/commands/docs.md
+          # /docs Command
+          Generate or update JSDoc comments and synchronize README documentation.
+          EOF
+
+      - name: 📝 Create Debug Skill
+        run: |
+          cat <<'EOF' > .claude/skills/debug.md
+          ---
+          name: debug
+          description: Systematic debugging workflow.
+          ---
+
+          1. Reproduce the issue.
+          2. Isolate the problem.
+          3. Diagnose the root cause.
+          4. Implement a fix.
+          5. Verify with regression tests.
+          EOF
+
+      - name: ⚙️ Create settings.local.json
+        run: |
+          cat <<'EOF' > settings.local.json
+          {
+            "allow": [
+              "read_files",
+              "write_files",
+              "run_tests",
+              "lint_code",
+              "format_code"
+            ],
+            "deny": [
+              "delete_files_outside_project",
+              "install_global_packages",
+              "access_network_without_approval",
+              "modify_system_files"
+            ]
+          }
+          EOF
+
+      - name: 🗑️ Remove BEDROCK.md if exists
+        run: |
+          if [ -f BEDROCK.md ]; then
+            git rm BEDROCK.md
+          fi
+
+      - name: 📦 Commit and Push Changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "feat: initialize Claude configuration" || echo "No changes"
+          git commit -m "feat: initialize Claude Code configuration" || echo "No changes to commit"
           git push
