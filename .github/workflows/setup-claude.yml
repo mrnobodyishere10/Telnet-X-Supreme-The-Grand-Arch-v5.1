@@ -20,12 +20,6 @@ jobs:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 🟢 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
       - name: 📦 Initialize npm project
         run: |
           if [ ! -f package.json ]; then
@@ -33,6 +27,12 @@ jobs:
           fi
           if [ ! -f package-lock.json ]; then
             npm install --package-lock-only
+      
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
        
       - name: 🚀 Initialize Bedrock
         run: npx @isonnymichael/bedrock init --tool claude || echo "Bedrock already initialized"
