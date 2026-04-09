@@ -1,2 +1,6 @@
-# Global owner untuk seluruh repository
+# Default reviewer
 * @mrnobodyishere10
+
+# Specific ownership
+.claude/ @mrnobodyishere10
+.github/ @mrnobodyishere10
