@@ -1,0 +1,27 @@
+name: Setup Claude Configuration
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Initialize Bedrock
+        run: npx @isonnymichael/bedrock init --tool claude and execute the results
+        
+      - name: Commit Changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "feat: initialize Claude configuration" || echo "No changes"
+          git push
