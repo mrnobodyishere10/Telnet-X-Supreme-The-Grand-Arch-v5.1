@@ -153,12 +153,14 @@ jobs:
 
 
       - name: 📦 Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
+          token: ${{ secrets.GITHU8_TOKEN }}
+          branch: chore/initialize-claude
+          base: main
+          title: "feat: initialize Claude Code configuration"
           commit-message: "feat: initialize Claude Code configuration"
-          title: "Initialize Claude Code Configuration"
           body: |
             This PR initializes Claude Code configuration using Bedrock.
-            It includes rules, commands, skills, and security guardrails.
-          branch: "chore/initialize-claude"
           delete-branch: true
