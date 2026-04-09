@@ -25,7 +25,11 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-
+      
+      - name: 📦 Initialize npm project
+        run: | 
+         if [ ! -f package.json ]; then npm init -y fi npm install --package-lock-only
+    
       - name: 🚀 Initialize Bedrock
         run: npx @isonnymichael/bedrock init --tool claude || echo "Bedrock already initialized"
 
