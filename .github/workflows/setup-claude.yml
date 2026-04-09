@@ -147,13 +147,17 @@ jobs:
       - name: 🗑️ Remove BEDROCK.md if exists
         run: |
           if [ -f BEDROCK.md ]; then
-            git rm BEDROCK.md
+            git rm -rf BEDROCK.md
           fi
 
-      - name: 📦 Commit and Push Changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "feat: initialize Claude Code configuration" || echo "No changes to commit"
-          git push
+
+      - name: 📦 Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "feat: initialize Claude Code configuration"
+          title: "Initialize Claude Code Configuration"
+          body: |
+            This PR initializes Claude Code configuration using Bedrock.
+            It includes rules, commands, skills, and security guardrails.
+          branch: "chore/initialize-claude"
+          delete-branch: true
