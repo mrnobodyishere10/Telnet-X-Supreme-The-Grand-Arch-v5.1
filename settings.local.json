@@ -1,0 +1,15 @@
+{
+  "allow": [
+    "read_files",
+    "write_files",
+    "run_tests",
+    "lint_code",
+    "format_code"
+  ],
+  "deny": [
+    "delete_files_outside_project",
+    "install_global_packages",
+    "access_network_without_approval",
+    "modify_system_files"
+  ]
+}
