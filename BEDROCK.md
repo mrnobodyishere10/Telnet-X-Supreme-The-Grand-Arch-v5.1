@@ -15,6 +15,7 @@ Refer to the documentation above for the correct file format, structure, and bes
 **Project Context:**
 The existing project structure is:
 ```
+BEDROCK.md
 LICENSE
 README.md
 bedrock-claude/
@@ -22,6 +23,7 @@ bedrock-claude/
   bedrock-claude/package.json
   bedrock-claude/src/
   bedrock-claude/tsconfig.json
+settings.local.json
 ```
 
 ---
