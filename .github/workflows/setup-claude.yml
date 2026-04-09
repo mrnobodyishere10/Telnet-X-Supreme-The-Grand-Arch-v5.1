@@ -16,7 +16,7 @@ jobs:
           node-version: 20
 
       - name: Initialize Bedrock
-        run: npx @isonnymichael/bedrock init --tool claude and execute the results
+        run: npx @isonnymichael/bedrock init --tool claude
         
       - name: Commit Changes
         run: |
