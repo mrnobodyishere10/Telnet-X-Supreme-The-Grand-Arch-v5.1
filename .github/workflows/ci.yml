@@ -1,38 +1,24 @@
 name: CI
 
 on:
-  pull_request:
-    branches: [main]
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: |
-          if [ -f package.json ]; then
-            npm ci || npm install
-          fi
+      - run: node -v && npm -v
 
-      - name: Run Lint
-        run: |
-          if [ -f package.json ]; then
-            npm run lint --if-present
-          fi
+      - run: npm install
 
-      - name: Run Tests
-        run: |
-          if [ -f package.json ]; then
-            npm test --if-present
-          fi
+      - run: npm test
