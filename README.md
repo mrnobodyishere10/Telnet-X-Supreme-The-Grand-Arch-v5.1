@@ -58,7 +58,3 @@ npm run coverage
 ## AI Agent (bedrock-claude)
 
 The `bedrock-claude/` subpackage provides a Claude-powered AI agent. See [`bedrock-claude/README.md`](bedrock-claude/README.md) for setup instructions.
-
-## License
-
-ISC
