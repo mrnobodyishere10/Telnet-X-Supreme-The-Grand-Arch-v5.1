@@ -1,0 +1,21 @@
+claude-config:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.claude/**'
+          - 'settings.local.json'
+
+github-actions:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/workflows/**'
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/*.md'
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'package.json'
+          - 'package-lock.json'

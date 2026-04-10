@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+
+jobs:
+  ci:
+    name: Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: 📦 Check project structure
+        run: |
+          if [ ! -f package.json ]; then
+            echo "No package.json found. Skipping Node.js steps."
+          fi
+
+      - name: 📦 Install dependencies
+        run: |
+          if [ -f package.json ]; then
+            if [ -f package-lock.json ]; then
+              npm ci
+            else
+              npm install
+            fi
+          fi
+
+      - name: 🔍 Run Lint
+        if: hashFiles('package.json') != ''
+        run: npm run lint --if-present
+
+      - name: 🧪 Run Tests
+        if: hashFiles('package.json') != ''
+        run: npm test --if-present
+
+      - name: 📋 List repository files
+        run: ls -la
