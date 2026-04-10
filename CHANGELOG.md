@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/mrnobodyishere10/Telnet-X-Supreme-The-Grand-Arch-v5.1/compare/v1.2.0...v1.3.0) (2026-04-10)
+
+
+### Features
+
+* add src, tests, and CI workflow with stable integration tests ([cb7e48f](https://github.com/mrnobodyishere10/Telnet-X-Supreme-The-Grand-Arch-v5.1/commit/cb7e48f3932f95be9ee18e91f0fec4dcfeeff8a2))
+
 # [1.2.0](https://github.com/mrnobodyishere10/Telnet-X-Supreme-The-Grand-Arch-v5.1/compare/v1.1.0...v1.2.0) (2026-04-10)
 
 
