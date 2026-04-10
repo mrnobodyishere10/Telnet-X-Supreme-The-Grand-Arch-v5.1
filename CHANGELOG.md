@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/mrnobodyishere10/Telnet-X-Supreme-The-Grand-Arch-v5.1/compare/v1.1.0...v1.2.0) (2026-04-10)
+
+
+### Features
+
+* initialize Claude Code configuration ([#7](https://github.com/mrnobodyishere10/Telnet-X-Supreme-The-Grand-Arch-v5.1/issues/7)) ([7ae5f14](https://github.com/mrnobodyishere10/Telnet-X-Supreme-The-Grand-Arch-v5.1/commit/7ae5f141a3cbe9e60eecf81b3b7d065f3545b5a7))
+
 # [1.1.0](https://github.com/mrnobodyishere10/Telnet-X-Supreme-The-Grand-Arch-v5.1/compare/v1.0.0...v1.1.0) (2026-04-10)
 
 
