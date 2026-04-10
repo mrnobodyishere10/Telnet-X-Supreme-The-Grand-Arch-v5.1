@@ -145,12 +145,6 @@ jobs:
           }
           EOF
 
-      - name: 🗑️ Remove BEDROCK.md if exists
-        run: |
-          if [ -f BEDROCK.md ]; then
-            git rm -rf BEDROCK.md
-          fi
-
 
       - name: 📦 Create Pull Request
         id: cpr
