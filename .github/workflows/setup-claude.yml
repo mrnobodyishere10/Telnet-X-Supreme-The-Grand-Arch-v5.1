@@ -164,3 +164,11 @@ jobs:
           body: |
             This PR initializes Claude Code configuration using Bedrock.
           delete-branch: true
+
+      - name: 🔀 Enable Auto Merge
+        if: steps.cpr.outputs.pull-request-number != ''
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          token: ${{ secrets.GITHU8_TOKEN }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: squash
