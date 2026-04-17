@@ -1,10 +1,18 @@
+import net from "node:net";
+
 export function validateHost(host) {
+  if (typeof host !== "string" || host.length === 0 || host.length > 253) {
+    return false;
+  }
+
   if (host === "localhost") return true;
+  if (net.isIP(host) !== 0) return true;
 
-  const ipv4 =
-    /^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}$/;
+  // RFC-friendly FQDN check (labels 1-63 chars, no leading/trailing hyphen).
+  const hostname =
+    /^(?=.{1,253}$)(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,63}$/;
 
-  return ipv4.test(host);
+  return hostname.test(host);
 }
 
 export function validatePort(port) {

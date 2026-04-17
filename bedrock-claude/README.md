@@ -41,3 +41,34 @@ bedrock-claude/
 - TypeScript-based architecture
 - Environment-based configuration
 - Ready for AWS Bedrock adaptation
+
+## Runtime Guardrails
+
+The agent supports these optional environment variables:
+
+- `CLAUDE_MODEL`: override default model.
+- `CLAUDE_REQUEST_TIMEOUT_MS`: request timeout in milliseconds (positive integer).
+- `CLAUDE_MAX_ATTEMPTS`: retry attempts for transient failures (positive integer).
+
+For constrained environments such as Termux/proot, prefer explicit values like:
+
+- `CLAUDE_REQUEST_TIMEOUT_MS=45000`
+- `CLAUDE_MAX_ATTEMPTS=2`
+
+You can also pass a prompt directly:
+
+```bash
+npm run dev -- "Explain telnet risks in one paragraph"
+```
+
+For a quick runtime verification (good for Termux/proot diagnostics):
+
+```bash
+npm run dev -- --healthcheck
+```
+
+JSON healthcheck output:
+
+```bash
+npm run dev -- --healthcheck --json
+```

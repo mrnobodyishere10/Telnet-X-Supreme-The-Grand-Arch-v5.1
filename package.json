@@ -2,7 +2,13 @@
   "name": "telnet-x-supreme-the-grand-arch-v5.1",
   "version": "1.0.0",
   "description": "Modular Telnet-based network audit framework with AI-assisted orchestration.",
-  "keywords": ["telnet", "network", "audit", "ai", "claude"],
+  "keywords": [
+    "telnet",
+    "network",
+    "audit",
+    "ai",
+    "claude"
+  ],
   "homepage": "https://github.com/mrnobodyishere10/Telnet-X-Supreme-The-Grand-Arch-v5.1#readme",
   "bugs": {
     "url": "https://github.com/mrnobodyishere10/Telnet-X-Supreme-The-Grand-Arch-v5.1/issues"
@@ -20,16 +26,26 @@
   },
   "scripts": {
     "start": "node src/cli.js",
-    "test": "node --test",
-    "test:watch": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
     "coverage": "vitest run --coverage",
-    "lint": "node --check src/**/*.js"
+    "lint": "node --check src/**/*.js",
+    "ops:health": "node ops-health.mjs",
+    "prepare": "husky"
   },
   "dependencies": {
     "chalk": "^4.1.2"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^2.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.2",
     "vitest": "^2.0.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,json,md}": [
+      "prettier --write"
+    ]
   }
 }
